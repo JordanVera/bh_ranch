@@ -20,8 +20,8 @@ export default function Footer() {
               />
             </Link>
             <p className="max-w-xs text-sm leading-relaxed">
-              {COMPANY.tagline} — Houston floral design for weddings, events,
-              and celebrations.
+              {COMPANY.tagline} — Southwest Houston&apos;s premier venue for
+              weddings, quinceañeras, reunions, and celebrations.
             </p>
             <SocialLinks />
           </div>
@@ -51,7 +51,7 @@ export default function Footer() {
                 11-acre event venue with covered pavilion and gazebo
               </li>
               <li className="text-sm">
-                Floral coordination and event decorating
+                Event decorating and coordination
               </li>
               <li className="text-sm">
                 Wedding packages (50–500 guests) with decorations

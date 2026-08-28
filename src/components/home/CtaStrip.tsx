@@ -11,7 +11,7 @@ export default function CtaStrip() {
     <section className="relative overflow-hidden px-6 py-24 lg:px-8">
       <div className="absolute inset-0">
         <Image
-          src="https://thistleandgracedesign.com/wp-content/uploads/2025/10/10-scaled.jpg"
+          src="/cta-bg.jpg"
           alt=""
           fill
           className="object-cover object-center"
@@ -38,7 +38,7 @@ export default function CtaStrip() {
           transition={{ delay: 0.1 }}
           className="mb-6 font-serif text-4xl leading-tight text-white sm:text-5xl md:text-6xl"
         >
-          Let&apos;s Design Your{' '}
+          Let&apos;s Plan Your{' '}
           <em className="italic text-[#A88D2E]">Perfect Event</em>
         </motion.h2>
 
@@ -49,8 +49,9 @@ export default function CtaStrip() {
           transition={{ delay: 0.2 }}
           className="mx-auto mb-10 max-w-xl text-base text-white/75 sm:text-lg"
         >
-          From your first consultation to the final installation, our team
-          handles every floral detail so you can enjoy your celebration.
+          From your first tour to the final cleanup, our team handles every
+          detail — catering, décor, seating, and more — so you can enjoy your
+          celebration.
         </motion.p>
 
         <motion.div

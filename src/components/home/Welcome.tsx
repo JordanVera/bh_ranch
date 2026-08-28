@@ -31,8 +31,8 @@ export default function Welcome() {
               {...anim(0.1)}
               className="font-serif text-4xl sm:text-5xl leading-tight text-foreground"
             >
-              Unforgettable concepts.{' '}
-              <em className="italic text-[#A88D2E]">Lasting impressions.</em>
+              Unforgettable events.{' '}
+              <em className="italic text-[#A88D2E]">Lasting memories.</em>
             </motion.h2>
 
             <motion.p
@@ -56,7 +56,7 @@ export default function Welcome() {
               {[
                 { number: `${GOOGLE_RATING.rating}★`, label: 'Google Rating' },
                 { number: `${GOOGLE_RATING.reviewCount}`, label: 'Reviews' },
-                { number: 'Houston', label: 'Local Florist' },
+                { number: '11 Acres', label: 'Event Venue' },
               ].map((stat) => (
                 <div key={stat.label}>
                   <p className="font-serif text-2xl text-[#A88D2E]">

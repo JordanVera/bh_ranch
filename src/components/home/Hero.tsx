@@ -134,7 +134,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-6 text-xs tracking-[0.4em] text-[#A88D2E] uppercase"
         >
-          Art Floral Design · Houston
+          Entertainment & Event Center · Houston
         </motion.p>
 
         <motion.h1
@@ -143,7 +143,7 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.35 }}
           className="max-w-4xl font-serif text-5xl leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          Where Design Meets <em className="italic text-[#A88D2E]">Beauty</em>
+          Where Memories Become <em className="italic text-[#A88D2E]">Legend</em>
         </motion.h1>
 
         <motion.p
@@ -152,9 +152,9 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.55 }}
           className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg"
         >
-          {COMPANY.name} transforms weddings, galas, and celebrations into
-          unforgettable masterpieces — with artful florals and curated event
-          rentals.
+          {COMPANY.name} is Southwest Houston&apos;s premier 11-acre event
+          venue — hosting weddings, quinceañeras, reunions, and celebrations
+          for 50 to 500 guests.
         </motion.p>
 
         <motion.div
@@ -173,7 +173,7 @@ export default function Hero() {
             href="/portfolio"
             className="border border-white/50 px-8 py-3.5 text-xs tracking-[0.2em] text-white uppercase transition-all duration-200 hover:border-[#A88D2E] hover:text-[#A88D2E]"
           >
-            View Portfolio
+            View Gallery
           </Link>
         </motion.div>
       </motion.div>

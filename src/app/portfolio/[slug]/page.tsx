@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const description = project.photographer
-    ? `${project.title} floral design by Thistle & Grace Design. Photography by ${project.photographer}.`
-    : `${project.title} floral design by Thistle & Grace Design in Houston, TX.`;
+    ? `${project.title} at BH Ranch. Photography by ${project.photographer}.`
+    : `${project.title} at BH Ranch in Southwest Houston, TX.`;
 
   return {
     title: `${project.title} | Portfolio | ${COMPANY.name}`,

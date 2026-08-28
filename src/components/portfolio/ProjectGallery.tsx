@@ -54,7 +54,7 @@ export default function ProjectGallery({
           >
             <Image
               src={src}
-              alt={`${project.title} floral design ${index + 1}`}
+              alt={`${project.title} at BH Ranch ${index + 1}`}
               width={1200}
               height={900}
               className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -129,7 +129,7 @@ export default function ProjectGallery({
                     >
                       <Image
                         src={project.images[selected]}
-                        alt={`${project.title} floral design ${selected + 1}`}
+                        alt={`${project.title} at BH Ranch ${selected + 1}`}
                         width={1600}
                         height={1200}
                         className="mx-auto h-auto max-h-[80vh] w-auto object-contain"

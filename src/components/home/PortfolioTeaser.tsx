@@ -27,7 +27,7 @@ export default function PortfolioTeaser() {
               transition={{ delay: 0.1 }}
               className="font-serif text-4xl text-foreground sm:text-5xl"
             >
-              Portfolio
+              Gallery
             </motion.h2>
           </div>
           <motion.div
@@ -40,7 +40,7 @@ export default function PortfolioTeaser() {
               href="/portfolio"
               className="inline-flex items-center gap-2 text-xs tracking-[0.2em] text-[#A88D2E] uppercase transition-all duration-200 hover:gap-3"
             >
-              View All Work <ArrowRight size={12} />
+              View Full Gallery <ArrowRight size={12} />
             </Link>
           </motion.div>
         </div>

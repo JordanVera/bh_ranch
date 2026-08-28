@@ -5,7 +5,7 @@ import { COMPANY } from '@/lib/data';
 
 export const metadata: Metadata = {
   title: `Thank You | ${COMPANY.name}`,
-  description: 'Thank you for contacting Thistle & Grace Design.',
+  description: 'Thank you for contacting BH Ranch.',
   robots: { index: false, follow: false },
 };
 
@@ -22,8 +22,8 @@ export default function ThankYouPage() {
         </h1>
         <p className="text-foreground/60 leading-relaxed">
           We&apos;ve received your inquiry and will be in touch within 24
-          business hours to discuss your event. In the meantime, follow our
-          latest work on Instagram.
+          business hours to discuss your event. In the meantime, browse our
+          gallery or follow us on Facebook for inspiration.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
           <Link

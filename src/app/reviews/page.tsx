@@ -8,12 +8,12 @@ import { FEATURED_REVIEWS, GOOGLE_REVIEWS } from '@/lib/reviews';
 export const metadata: Metadata = {
   title: `Reviews | ${COMPANY.name}`,
   description:
-    'Read Google reviews for BH Ranch — a 4.5★ Houston venue and art floral studio trusted by couples and event planners across Greater Houston.',
+    'Read Google reviews for BH Ranch — a 4.5★ Southwest Houston event venue trusted by couples, families, and event planners.',
 };
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Florist',
+  '@type': 'EventVenue',
   name: COMPANY.name,
   telephone: COMPANY.phone,
   address: {
@@ -21,7 +21,7 @@ const jsonLd = {
     streetAddress: COMPANY.address,
     addressLocality: 'Houston',
     addressRegion: 'TX',
-    postalCode: '77092',
+    postalCode: '77045',
   },
   aggregateRating: {
     '@type': 'AggregateRating',
@@ -71,8 +71,8 @@ export default function ReviewsPage() {
 
       <section className="relative h-64 overflow-hidden sm:h-80">
         <Image
-          src="https://thistleandgracedesign.com/wp-content/uploads/2025/10/6-scaled.jpg"
-          alt="Floral design by BH Ranch"
+          src="/gallery/wedding-reception-2/05-1790478_orig.jpg"
+          alt="Wedding reception at BH Ranch"
           fill
           priority
           className="object-cover object-center"
@@ -100,8 +100,8 @@ export default function ReviewsPage() {
           </div>
           <p className="leading-relaxed text-foreground/60">
             Couples, families, and event planners across Greater Houston trust
-            Steve and the Thistle &amp; Grace team to bring their celebrations
-            to life. Here is what clients are saying on Google.
+            the BH Ranch team to bring their celebrations to life. Here is what
+            clients are saying on Google.
           </p>
           <a
             href={GOOGLE_REVIEWS.url}
@@ -145,7 +145,7 @@ export default function ReviewsPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/60">
             We would love to hear about your celebration. Leave a review on
-            Google to help other Houston couples and event hosts find us.
+            Google to help other Houston couples and event hosts find BH Ranch.
           </p>
           <a
             href={GOOGLE_REVIEWS.url}

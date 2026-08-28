@@ -114,7 +114,7 @@ export default function InquiryForm() {
         <Label htmlFor="message">Tell Us About Your Event *</Label>
         <Textarea
           id="message"
-          placeholder="Share details about your event — venue, style, floral preferences..."
+          placeholder="Share details about your event — type, guest count, date, and any special requests..."
           rows={5}
           {...register("message")}
           className={errors.message ? "border-destructive" : ""}
