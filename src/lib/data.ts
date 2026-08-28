@@ -17,10 +17,26 @@ export const COMPANY = {
   yearsExperience: 10,
 };
 
-export const NAV_LINKS = [
+export type NavLink = {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+};
+
+export const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Gallery', href: '/portfolio' },
+  {
+    label: 'Packages',
+    href: '/packages',
+    children: [
+      { label: 'Wedding Packages', href: '/packages/wedding' },
+      { label: 'Quinceañera Packages', href: '/packages/quinceanera' },
+      { label: 'Family Reunion Packages', href: '/packages/family-reunion' },
+      { label: 'Party Packages', href: '/packages/party' },
+    ],
+  },
   { label: 'Reviews', href: '/reviews' },
   { label: 'Contact', href: '/contact' },
 ];

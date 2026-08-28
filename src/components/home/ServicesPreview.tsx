@@ -76,10 +76,16 @@ export default function ServicesPreview() {
                     {service.description}
                   </p>
                   <Link
-                    href="/contact"
+                    href={
+                      service.id === 'wedding-packages'
+                        ? '/packages'
+                        : '/contact'
+                    }
                     className="inline-flex items-center gap-2 mt-6 text-[#A88D2E] text-xs tracking-[0.2em] uppercase group/link hover:gap-3 transition-all duration-200"
                   >
-                    Inquire
+                    {service.id === 'wedding-packages'
+                      ? 'View Packages'
+                      : 'Inquire'}
                     <ArrowRight
                       size={12}
                       className="transition-transform group-hover/link:translate-x-1"

@@ -38,6 +38,20 @@ export default function Footer() {
                   >
                     {link.label}
                   </Link>
+                  {link.children ? (
+                    <ul className="mt-2 flex flex-col gap-2 pl-3">
+                      {link.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            className="text-sm text-white/50 transition-colors hover:text-[var(--gold,#C9A84C)]"
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </li>
               ))}
             </ul>

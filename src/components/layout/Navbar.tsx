@@ -5,10 +5,209 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone } from 'lucide-react';
-import { NAV_LINKS, COMPANY } from '@/lib/data';
+import { Menu, X, Phone, ChevronDown } from 'lucide-react';
+import { NAV_LINKS, COMPANY, type NavLink } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import SocialLinks from '@/components/layout/SocialLinks';
+
+function isLinkActive(pathname: string, href: string) {
+  return pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
+}
+
+function DesktopDropdown({
+  link,
+  pathname,
+}: {
+  link: NavLink;
+  pathname: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const children = link.children ?? [];
+  const parentActive = isLinkActive(pathname, link.href);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [open]);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+          setOpen(false);
+        }
+      }}
+    >
+      <Link
+        href={link.href}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        className={cn(
+          'group relative inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[11px] font-medium tracking-widest uppercase transition-colors xl:px-3',
+          parentActive ? 'text-[#A88D2E]' : 'text-white/80 hover:text-white',
+        )}
+      >
+        {link.label}
+        <ChevronDown
+          size={12}
+          className={cn(
+            'transition-transform duration-200',
+            open && 'rotate-180',
+          )}
+        />
+        <span
+          className={cn(
+            'absolute inset-x-3.5 -bottom-0.5 h-px bg-[#A88D2E] transition-transform duration-300',
+            parentActive || open ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
+          )}
+        />
+      </Link>
+
+      <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
+        <AnimatePresence>
+          {open ? (
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 6 }}
+              transition={{ duration: 0.16 }}
+              role="menu"
+              className="min-w-56 overflow-hidden rounded-2xl border border-white/10 bg-[#0e0c08]/95 py-2 shadow-xl shadow-black/30 backdrop-blur-xl"
+            >
+              {children.map((child) => {
+                const childActive = pathname === child.href;
+                return (
+                  <Link
+                    key={child.href}
+                    href={child.href}
+                    role="menuitem"
+                    className={cn(
+                      'block px-4 py-2.5 text-[11px] tracking-[0.16em] uppercase transition-colors',
+                      childActive
+                        ? 'text-[#A88D2E]'
+                        : 'text-white/80 hover:bg-[#A88D2E]/10 hover:text-[#A88D2E]',
+                    )}
+                  >
+                    {child.label}
+                  </Link>
+                );
+              })}
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+function MobileNavItem({
+  link,
+  pathname,
+  onNavigate,
+}: {
+  link: NavLink;
+  pathname: string;
+  onNavigate: () => void;
+}) {
+  const [expanded, setExpanded] = useState(() =>
+    isLinkActive(pathname, link.href),
+  );
+  const children = link.children ?? [];
+  const isActive = isLinkActive(pathname, link.href);
+
+  if (children.length === 0) {
+    return (
+      <Link
+        href={link.href}
+        onClick={onNavigate}
+        className={cn(
+          'rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-[#A88D2E]/10',
+          isActive ? 'text-[#A88D2E]' : 'text-white hover:text-[#A88D2E]',
+        )}
+      >
+        {link.label}
+      </Link>
+    );
+  }
+
+  return (
+    <div>
+      <div className="flex items-center">
+        <Link
+          href={link.href}
+          onClick={onNavigate}
+          className={cn(
+            'flex-1 rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-[#A88D2E]/10',
+            isActive ? 'text-[#A88D2E]' : 'text-white hover:text-[#A88D2E]',
+          )}
+        >
+          {link.label}
+        </Link>
+        <button
+          type="button"
+          aria-label={`${expanded ? 'Collapse' : 'Expand'} ${link.label} menu`}
+          aria-expanded={expanded}
+          onClick={() => setExpanded((value) => !value)}
+          className="flex h-10 w-10 items-center justify-center rounded-xl text-white/70 hover:text-[#A88D2E]"
+        >
+          <ChevronDown
+            size={16}
+            className={cn(
+              'transition-transform duration-200',
+              expanded && 'rotate-180',
+            )}
+          />
+        </button>
+      </div>
+      <AnimatePresence initial={false}>
+        {expanded ? (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="overflow-hidden"
+          >
+            <div className="ml-2 mb-1 flex flex-col border-l border-white/10 pl-2">
+              {children.map((child) => {
+                const childActive = pathname === child.href;
+                return (
+                  <Link
+                    key={child.href}
+                    href={child.href}
+                    onClick={onNavigate}
+                    className={cn(
+                      'rounded-xl px-3 py-2 text-sm transition hover:bg-[#A88D2E]/10',
+                      childActive
+                        ? 'text-[#A88D2E]'
+                        : 'text-white/75 hover:text-[#A88D2E]',
+                    )}
+                  >
+                    {child.label}
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,9 +255,17 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-1 lg:flex">
           {NAV_LINKS.map((link) => {
-            const isActive =
-              pathname === link.href ||
-              (link.href !== '/' && pathname.startsWith(`${link.href}/`));
+            if (link.children?.length) {
+              return (
+                <DesktopDropdown
+                  key={link.href}
+                  link={link}
+                  pathname={pathname}
+                />
+              );
+            }
+
+            const isActive = isLinkActive(pathname, link.href);
 
             return (
               <Link
@@ -132,27 +339,14 @@ export default function Navbar() {
             )}
           >
             <div className="flex flex-col">
-              {NAV_LINKS.map((link) => {
-                const isActive =
-                  pathname === link.href ||
-                  (link.href !== '/' && pathname.startsWith(`${link.href}/`));
-
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={cn(
-                      'rounded-xl px-3 py-2.5 text-sm font-medium transition hover:bg-[#A88D2E]/10',
-                      isActive
-                        ? 'text-[#A88D2E]'
-                        : 'text-white hover:text-[#A88D2E]',
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
+              {NAV_LINKS.map((link) => (
+                <MobileNavItem
+                  key={link.href}
+                  link={link}
+                  pathname={pathname}
+                  onNavigate={() => setMobileOpen(false)}
+                />
+              ))}
             </div>
             <div className="mt-3 grid gap-2 border-t border-white/10 pt-3">
               <Link
